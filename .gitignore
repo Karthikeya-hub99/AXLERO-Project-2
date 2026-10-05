@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Node / React
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+
+# Local backup files
+.gitignore.local
+README.local.md
