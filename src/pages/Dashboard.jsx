@@ -1,4 +1,5 @@
 import "./Dashboard.css";
+import CodeEditor from "../components/CodeEditor";
 function Dashboard() {
   return (
     <div className="dashboard">
@@ -39,9 +40,7 @@ function Dashboard() {
     </button>
   </div>
 
-  <div className="editor-placeholder">
-    Code editor will appear here
-  </div>
+  <CodeEditor />
 </section>
 
           <section className="output-section">
