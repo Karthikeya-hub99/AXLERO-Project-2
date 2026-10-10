@@ -152,3 +152,32 @@
 .run-button:hover {
   background: #15803d;
 }
+
+.code-editor-container {
+  overflow: hidden;
+  border: 1px solid #334155;
+  border-radius: 6px;
+}
+
+.code-editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.code-editor-toolbar button {
+  padding: 6px 10px;
+  border: 1px solid #475569;
+  border-radius: 4px;
+  background: #334155;
+  color: white;
+  cursor: pointer;
+}
+
+.code-editor-toolbar button:hover {
+  background: #475569;
+}

@@ -1,34 +1,49 @@
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
 
-function CodeEditor() {
-  const [code, setCode] = useState(`def main():
+const DEFAULT_CODE = `def main():
     print("Hello from WasmBox!")
 
-main()`);
+main()`;
+
+function CodeEditor() {
+  const [code, setCode] = useState(DEFAULT_CODE);
 
   const handleEditorChange = (value) => {
-    setCode(value || "");
+    setCode(value ?? "");
+  };
+
+  const handleReset = () => {
+    setCode(DEFAULT_CODE);
   };
 
   return (
-    <Editor
-      height="350px"
-      defaultLanguage="python"
-      value={code}
-      theme="vs-dark"
-      onChange={handleEditorChange}
-      options={{
-        minimap: {
-          enabled: false,
-        },
-        fontSize: 14,
-        automaticLayout: true,
-        wordWrap: "on",
-        lineNumbers: "on",
-        scrollBeyondLastLine: false,
-      }}
-    />
+    <div className="code-editor-container">
+      <div className="code-editor-toolbar">
+        <span>Python</span>
+        <button onClick={handleReset}>Reset Code</button>
+      </div>
+
+      <Editor
+        height="350px"
+        language="python"
+        value={code}
+        onChange={handleEditorChange}
+        theme="vs-dark"
+        options={{
+          minimap: { enabled: false },
+          fontSize: 14,
+          automaticLayout: true,
+          wordWrap: "on",
+          lineNumbers: "on",
+          scrollBeyondLastLine: false,
+          tabSize: 4,
+          insertSpaces: true,
+          renderLineHighlight: "line",
+          padding: { top: 12 },
+        }}
+      />
+    </div>
   );
 }
 
