@@ -181,3 +181,26 @@
 .code-editor-toolbar button:hover {
   background: #475569;
 }
+
+.output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.clear-output-button {
+  padding: 6px 12px;
+  border: 1px solid #475569;
+  border-radius: 4px;
+  background: #334155;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.clear-output-button:hover {
+  background: #475569;
+}

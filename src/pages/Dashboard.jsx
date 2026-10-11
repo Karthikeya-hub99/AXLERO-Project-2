@@ -1,6 +1,8 @@
+import { useState } from "react";
 import "./Dashboard.css";
 import CodeEditor from "../components/CodeEditor";
 function Dashboard() {
+  const [output, setOutput] = useState("");
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -43,13 +45,23 @@ function Dashboard() {
   <CodeEditor />
 </section>
 
-          <section className="output-section">
-            <h2>Execution Output</h2>
 
-            <div className="output-placeholder">
-              Run a plugin to see the output here.
-            </div>
-          </section>
+<section className="output-section">
+  <div className="output-header">
+    <h3>Execution Output</h3>
+    <button
+      className="clear-output-button"
+      onClick={() => setOutput("")}
+    >
+      Clear Output
+    </button>
+  </div>
+
+  <div className="output-placeholder">
+    {output || "Run a plugin to see the output here."}
+  </div>
+</section>
+
         </main>
       </div>
     </div>
