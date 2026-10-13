@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import CodeEditor from "../components/CodeEditor";
 function Dashboard() {
   const [output, setOutput] = useState("");
+  const [runStatus, setRunStatus] = useState("Ready");
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -35,11 +36,22 @@ function Dashboard() {
     <div>
       <h2>Plugin Editor</h2>
       <span className="file-name">main.py</span>
+    
+      <span className="run-status"> 
+        Status: {runStatus}
+      </span>
     </div>
 
-    <button className="run-button">
-      ▶ Run Plugin
-    </button>
+    <button
+      className="run-button"
+      onClick={() => {
+        setRunStatus("Running");
+        setOutput("Plugin execution completed successfully.");
+        setRunStatus("Completed");
+      }}
+>
+  Run Plugin
+</button>
   </div>
 
   <CodeEditor />
