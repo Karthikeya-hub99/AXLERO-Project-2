@@ -4,6 +4,7 @@ import CodeEditor from "../components/CodeEditor";
 function Dashboard() {
   const [output, setOutput] = useState("");
   const [runStatus, setRunStatus] = useState("Ready");
+  const [isRunning, setIsRunning] = useState(false);
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -42,15 +43,22 @@ function Dashboard() {
       </span>
     </div>
 
-    <button
-      className="run-button"
-      onClick={() => {
-        setRunStatus("Running");
-        setOutput("Plugin execution completed successfully.");
-        setRunStatus("Completed");
-      }}
+<button
+  className="run-button"
+  disabled={isRunning}
+  onClick={() => {
+    setIsRunning(true);
+    setRunStatus("Running");
+    setOutput("Plugin is running...");
+
+    setTimeout(() => {
+      setOutput("Plugin execution completed successfully.");
+      setRunStatus("Completed");
+      setIsRunning(false);
+    }, 1500);
+  }}
 >
-  Run Plugin
+  {isRunning ? "Running..." : "Run Plugin"}
 </button>
   </div>
 
