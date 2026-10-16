@@ -5,6 +5,7 @@ function Dashboard() {
   const [output, setOutput] = useState("");
   const [runStatus, setRunStatus] = useState("Ready");
   const [isRunning, setIsRunning] = useState(false);
+  const [runHistory, setRunHistory] = useState([]);
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -46,17 +47,31 @@ function Dashboard() {
 <button
   className="run-button"
   disabled={isRunning}
-  onClick={() => {
-    setIsRunning(true);
-    setRunStatus("Running");
-    setOutput("Plugin is running...");
+onClick={() => {
+  setIsRunning(true);
+  setRunStatus("Running");
+  setOutput("Plugin is running...");
 
-    setTimeout(() => {
-      setOutput("Plugin execution completed successfully.");
-      setRunStatus("Completed");
-      setIsRunning(false);
-    }, 1500);
-  }}
+  const startedAt = new Date().toLocaleTimeString();
+
+  setTimeout(() => {
+    const result = "Plugin execution completed successfully.";
+
+    setOutput(result);
+    setRunStatus("Completed");
+    setIsRunning(false);
+
+    setRunHistory((previousHistory) => [
+      {
+        id: Date.now(),
+        time: startedAt,
+        status: "Completed",
+        message: result,
+      },
+      ...previousHistory,
+    ]);
+  }, 1500);
+}}
 >
   {isRunning ? "Running..." : "Run Plugin"}
 </button>
@@ -80,6 +95,28 @@ function Dashboard() {
   <div className="output-placeholder">
     {output || "Run a plugin to see the output here."}
   </div>
+</section>
+
+<section className="run-history-section">
+  <h3>Run History</h3>
+
+  {runHistory.length === 0 ? (
+    <p className="run-history-empty">
+      No runs yet. Click Run Plugin to get started.
+    </p>
+  ) : (
+    <div className="run-history-list">
+      {runHistory.map((run) => (
+        <div className="run-history-item" key={run.id}>
+          <div>
+            <strong>{run.status}</strong>
+            <p>{run.message}</p>
+          </div>
+          <span>{run.time}</span>
+        </div>
+      ))}
+    </div>
+  )}
 </section>
 
         </main>
