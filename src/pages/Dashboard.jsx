@@ -6,6 +6,7 @@ function Dashboard() {
   const [runStatus, setRunStatus] = useState("Ready");
   const [isRunning, setIsRunning] = useState(false);
   const [runHistory, setRunHistory] = useState([]);
+  const [executionTime, setExecutionTime] = useState(null);
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -48,6 +49,8 @@ function Dashboard() {
   className="run-button"
   disabled={isRunning}
 onClick={() => {
+  const startTime = Date.now();
+
   setIsRunning(true);
   setRunStatus("Running");
   setOutput("Plugin is running...");
@@ -55,6 +58,7 @@ onClick={() => {
   const startedAt = new Date().toLocaleTimeString();
 
   setTimeout(() => {
+    const duration = ((Date.now() - startTime) / 1000).toFixed(2);
     const result = "Plugin execution completed successfully.";
 
     setOutput(result);
@@ -67,6 +71,7 @@ onClick={() => {
         time: startedAt,
         status: "Completed",
         message: result,
+        duration: duration,
       },
       ...previousHistory,
     ]);
@@ -113,6 +118,7 @@ onClick={() => {
             <p>{run.message}</p>
           </div>
           <span>{run.time}</span>
+          <span>Duration: {run.duration}s</span>
         </div>
       ))}
     </div>
