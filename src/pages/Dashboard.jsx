@@ -103,7 +103,15 @@ onClick={() => {
 </section>
 
 <section className="run-history-section">
+  <div className="run-history-header">
   <h3>Run History</h3>
+  <button
+    className="clear-history-button"
+    onClick={() => setRunHistory([])}
+  >
+    Clear History
+  </button>
+</div>
 
   {runHistory.length === 0 ? (
     <p className="run-history-empty">
