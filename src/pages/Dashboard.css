@@ -307,3 +307,22 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+
+.download-output-button {
+  padding: 8px 12px;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  background-color: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.download-output-button:hover {
+  background-color: #1d4ed8;
+}
+
+.download-output-button:active {
+  transform: scale(0.98);
+}

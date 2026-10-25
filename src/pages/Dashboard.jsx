@@ -95,6 +95,25 @@ onClick={() => {
     >
       Clear Output
     </button>
+    <button
+  className="download-output-button"
+  onClick={() => {
+    const blob = new Blob([output || "No output available."], {
+      type: "text/plain",
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "wasmbox-output.txt";
+    link.click();
+
+    URL.revokeObjectURL(url);
+  }}
+>
+  Download Output
+</button>
   </div>
 
   <div className="output-placeholder">
