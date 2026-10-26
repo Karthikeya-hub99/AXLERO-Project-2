@@ -114,6 +114,19 @@ onClick={() => {
 >
   Download Output
 </button>
+<button
+  className="copy-output-button"
+  onClick={async () => {
+    try {
+      await navigator.clipboard.writeText(output || "No output available.");
+      alert("Output copied to clipboard!");
+    } catch (error) {
+      alert("Unable to copy output. Please try again.");
+    }
+  }}
+>
+  Copy Output
+</button>
   </div>
 
   <div className="output-placeholder">
